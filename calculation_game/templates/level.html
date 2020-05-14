@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <title>レベルを選択</title>
+</head>
+<body>
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-info" role="alert">
+    {{ message }}
+  </div>
+  {% endfor %}
+    <h1>レベルを選んでください</h1>
+    <form method="GET" action="{{ url_for('game')}}" class="form-group py-4">
+          <p>レベルを選択：
+              <input type="radio" name="level" value="1" checked> １
+              <input type="radio" name="level" value="2"> ２
+              <input type="radio" name="level" value="3"> ３
+          </p>
+        <button class="btn btn-outline-primary" type="submit" role="button">ゲーム開始</button>
+    </form>
+
+    <h2 class="py-4">ユーザー・データを消去する</h2>
+    <p>パスワードも消去されます</p>
+    <a href="{{ url_for('delete') }}" class="btn btn-outline-danger" role="button">データ消去</a>
+
+    <script src="/static/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

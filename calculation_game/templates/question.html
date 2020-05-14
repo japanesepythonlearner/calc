@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <title>ゲーム中</title>
+</head>
+<body>
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+      <div {%if category=='failed' %} class="alert alert-danger" {% else %} class="alert alert-info" {% endif %} role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+
+      <h1 class="display-1 py-4"> {{ num1 }} × {{ num2 }} = ?</h1>
+
+    <form method="POST" action="{{ url_for('game')}}" calss="form-group py-4">
+      <label for="ans">答え</label>
+        <input id="ans" name="user_answer" type="text" autofocus class="form-control-lg" >
+    </form>
+      <small class="text-muted">Enterで送信 / qを送信すると終了</small>
+
+    <script src="/static/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

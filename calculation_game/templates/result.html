@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <title>結果発表</title>
+</head>
+<body>
+
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div {%if category=='failed' %} class="alert alert-danger" {% else %} class="alert alert-info" {% endif %} role="alert">
+      {{ message }}
+    </div>
+  {% endfor %}
+
+    <h2>今回のスコア</h2>
+    <table class="table table-striped table-bordered table-sm mb-4" align="center">
+      <thead class="thead-light">
+        <tr>
+          <th>名前</th>
+          <th>レベル</th>
+          <th>問題数</th>
+          <th>正解数</th>
+          <th>誤答数</th>
+          <th>正答率（％）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for d in data%}
+            {% if d != data[1] %}
+              <td>{{ d }}</td>
+            {%  endif  %}
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>レベル {{ level }} のランキング</h2>
+    <table class="table table-striped table-bordered table-sm mb-4" align="center">
+      <thead class="thead-light">
+        <tr>
+          <th>ランク</th>
+          <th>名前</th>
+          <th>レベル</th>
+          <th>問題数</th>
+          <th>正解数</th>
+          <th>誤答数</th>
+          <th>正答率（％）</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rank, player in top_players %}
+          <tr {% if rank==1 %} class="table table-danger" {% endif %}>
+            <th>第{{ rank }}位</th>
+            {% for column in columns %}
+              <td>{{ player[column] }}</td>
+            {% endfor %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="py-2">
+        <a href="{{ url_for('again') }}" class="btn btn-outline-primary btn-lg" role="button">もう一度プレーする</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-lg" role="button">ログアウト</a>
+    </div>
+
+    <script src="/static/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

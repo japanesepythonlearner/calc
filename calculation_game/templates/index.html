@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <title>ログインしてください</title>
+</head>
+<body>
+  <header class="py-4">
+    <div class="container text-center">
+      <h1>計算ゲーム</h1>
+    </div>
+  </header>
+
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div {%if category=='failed' %} class="alert alert-danger" {% else %} class="alert alert-info" {% endif %} role="alert">
+    {{ message }}
+    </div>
+    {% endfor %}
+
+    <div class="form-group">
+    <form method="get" action='{{ url_for("login")}}'>
+            <p>ユーザー名（LINEの名前）</p>
+              <select name="name" class="form-control mb-4">
+                  <option></option>
+                  <option>Miwa Murata</option>
+                  <option>Wang Zhi（王志）</option>
+                  <option>三浦紘嵩（みうらひろたか）</option>
+                  <option>さえ</option>
+                  <option>勝山翔太</option>
+                  <option>とまつ</option>
+                  <option>Shiori</option>
+                  <option>天騰（落憶）</option>
+                  <option>小林暉</option>
+                  <option>Reina</option>
+                  <option>Gmail</option>
+              </select>
+      </div>
+      <div class="form-group">
+          <p>パスワード（誕生月）</p>
+            <select name="password" class="form-control mb-4">
+                <option></option>
+                <option>１月</option>
+                <option>２月</option>
+                <option>３月</option>
+                <option>４月</option>
+                <option>５月</option>
+                <option>６月</option>
+                <option>７月</option>
+                <option>８月</option>
+                <option>９月</option>
+                <option>１０月</option>
+                <option>１１月</option>
+                <option>１２月</option>
+            </select
+          </div>
+        <button type="submit" class="btn btn-outline-primary">ログイン</button>
+    </form>
+
+  <script src="/static/js/jquery-3.5.1.slim.min.js"></script>
+  <script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
